@@ -15,9 +15,9 @@ app.add_middleware(
 # Routers for versions
 app.include_router(v1_router.router, prefix='/v1')
 
-@app.get('/')
-def read_root():
-    return {'message': 'Welcome to Matrino :)'}
+@app.get('/health')
+def health():
+    return {'health': 'Matrino is healthy!'}
 
 # Exceptions handlers
 
