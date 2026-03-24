@@ -1,0 +1,19 @@
+services:
+
+ sage:
+  container_name: api
+  image: sageimg
+
+  build: .
+
+  environment:
+    - PORT=${PORT}
+
+  ports:
+    - "${PORT}:${PORT}"
+
+  develop:
+    watch:
+      - action: sync
+        path: .
+        target: /api
