@@ -23,7 +23,7 @@ function GenMatrixControlForm() {
       z: z,
       matrix: matrix
     };
-    fetch('https://matrino-dev-gc3hjhi3da-uc.a.run.app/v1/code-theory/generator-to-control', {
+    fetch('/api/v1/code-theory/generator-to-control', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

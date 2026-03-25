@@ -23,7 +23,7 @@ function GenMatrixParamForm() {
       z: z,
       code: codigos
     };
-    fetch('https://matrino-dev-gc3hjhi3da-uc.a.run.app/v1/code-theory/code-to-generator', {
+    fetch('/api/v1/code-theory/code-to-generator', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
