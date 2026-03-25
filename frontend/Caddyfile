@@ -1,0 +1,12 @@
+:8080 {
+    @api path /api/*
+    handle @api {
+        uri strip_prefix /api
+        reverse_proxy {$API_URL}
+    }
+
+    handle {
+        root * /usr/share/caddy
+        file_server
+    }
+}

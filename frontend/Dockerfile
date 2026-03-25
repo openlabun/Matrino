@@ -5,6 +5,9 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 
 WORKDIR /app
 
+ARG API_URL
+ENV API_URL=${API_URL}
+
 COPY package.json pnpm-lock.yaml ./
 
 RUN pnpm install --frozen-lockfile
@@ -22,10 +25,11 @@ RUN pnpm run build
 FROM caddy:2.10-alpine
 
 COPY --from=builder /app/dist /usr/share/caddy
+COPY Caddyfile /etc/caddy/Caddyfile
 
 EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD wget --no-verbose --tries=1 --spider http://localhost:8080/ || exit 1
 
-CMD ["caddy", "file-server", "--root", "/usr/share/caddy", "--listen", ":8080"]
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]

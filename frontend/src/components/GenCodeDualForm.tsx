@@ -23,7 +23,7 @@ function GenCodeDualForm() {
       z: z,
       code: codigos
     };
-    fetch('https://matrino-dev-gc3hjhi3da-uc.a.run.app/v1/code-theory/dual', {
+    fetch('/api/v1/code-theory/dual', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
